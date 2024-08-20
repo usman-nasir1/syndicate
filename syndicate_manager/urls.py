@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from syndicate_manager.views import SiteIndex
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', SiteIndex.as_view()),
     path('employee/', include("employees.urls")),
 ]
