@@ -129,7 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
             'format': '{levelname} {asctime} {module} {message}',
@@ -154,15 +154,10 @@ LOGGING = {
         },
     },
     'loggers': {
-        # 'django': {
-        #     'handlers': ['console', 'file'],
-        #     'level': 'DEBUG',
-        #     'propagate': True,
-        # },
-        'employees': {
+        'custom_logger': {
             'handlers': ['file'],
             'level': 'DEBUG',
-            'propagate': True,
+            'propagate': False,
         },
     },
 }
@@ -173,4 +168,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
