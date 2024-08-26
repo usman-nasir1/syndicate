@@ -159,7 +159,7 @@ LOGGING = {
         'custom_logger': {
             'handlers': ['file'],
             'level': 'DEBUG',
-            'propagate': False,
+            'propagate': True,
         },
     },
 }

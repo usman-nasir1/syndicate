@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from base_model import BaseModel
 
 class Employee(BaseModel):
@@ -19,7 +20,7 @@ class Employee(BaseModel):
     address_street = models.TextField(max_length=100)
     address_city = models.TextField(max_length=20)
     # Pakistani ID card has 13 chars
-    cnic = models.CharField(max_length=13)
+    cnic = models.CharField(_("CNIC"),max_length=13)
     emp_group = models.CharField(max_length=10, choices=EMPLOYEE_GROUPS)
     joining_date = models.DateTimeField(default=datetime.now)
     resignation_date = models.DateTimeField(null=True, blank=True)
