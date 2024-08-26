@@ -56,3 +56,4 @@ class Benefit(FinanceBase):
         Meta class for Benefit Model
         """
         db_table = "benefits"
+        
