@@ -1,7 +1,8 @@
+import logging
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from django.contrib import admin
 
+logger = logging.getLogger("finances")
 class HomeView(LoginRequiredMixin, TemplateView):
     """
     HomePage class
@@ -10,5 +11,6 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        logger.debug("USMAN")
         return context
     

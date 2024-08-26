@@ -134,7 +134,7 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
+            'format': '{levelname}:{asctime}:{filename}:{message}',
             'style': '{',
         },
         'simple': {
@@ -156,10 +156,10 @@ LOGGING = {
         },
     },
     'loggers': {
-        'custom_logger': {
+        'finances': {
             'handlers': ['file'],
             'level': 'DEBUG',
-            'propagate': True,
+            'propagate': False,
         },
     },
 }
