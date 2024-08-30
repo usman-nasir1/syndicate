@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <a href="{% url 'task_create' %}">Task List View</a>
+  <table class="w-full text-sm text-center border border-rose-300 border-collapse">
+    <tbody>
+      <tr>
+        <th class="border border-rose-300">ID</th>
+        <th class="border border-rose-300">Title</th>
+        <th class="border border-rose-300">Actions</th>
+      </tr>
+      {% for task in tasks %}
+        <tr>
+          <td class="border border-rose-300">
+            <a href="{% url 'task_detail' task.id %}">{{ task.id }}</a>
+          </td>
+          <td class="border border-rose-300">{{ task.title }}</td>
+          <td class="border border-rose-300">
+            <form method="post" action="{% url 'task_delete' task.pk %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <a href="{% url 'task_update' task.pk %}"> Update </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

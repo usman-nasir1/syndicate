@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  Welcome {{ user.username }}
-  <form method="POST" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-  </form>
+  <b> Welcome {{ user.username }} </b>
+  <ul>
+    <li><a href="{% url 'tasks_list' %}">Tasks List</a></li>
+  </ul>
+  
 {% endblock %}

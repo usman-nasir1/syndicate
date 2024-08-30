@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'theme',
     'finances',
     'employees',
+    'tasks'
 ]
 
 
