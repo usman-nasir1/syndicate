@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from os import getenv
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%hwv6&-kl@+5)s&lydr44qy%oi!%@339b^77y+9ws$46877fo)'
+SECRET_KEY = getenv('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =  True if getenv('IS_PRODUCTION', 'False') == 'False' else True
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +43,8 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'finances',
+    'employees',
+    'tasks'
 ]
 
 
@@ -133,7 +138,7 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
+            'format': '{levelname}:{asctime}:{filename}:{message}',
             'style': '{',
         },
         'simple': {
@@ -155,7 +160,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'custom_logger': {
+        'finances': {
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': False,
@@ -173,3 +178,5 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+MEDIA_ROOT = BASE_DIR / "uploads"
+MEDIA_URL = "/task_files/"
