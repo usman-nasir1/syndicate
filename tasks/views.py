@@ -20,6 +20,18 @@ class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "tasks"
 
+    def get(self, request, *args, **kwargs):
+        if "list_visit_count" in self.request.session:
+            self.request.session["list_visit_count"] += 1
+        else:
+            self.request.session["list_visit_count"] = 1
+        return super().get(self, request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['list_visit_count'] = self.request.session.get("list_visit_count", 0)
+        return context
+
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     """

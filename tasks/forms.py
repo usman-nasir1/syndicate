@@ -10,5 +10,5 @@ class TaskForm(ModelForm):
         TaskForm meta class
         """
         model = Task
-        fields = ['title', 'description', 'status', 'assigned_to']
+        fields = ['title', 'description', 'status', 'assigned_to', 'attachment']
     

@@ -17,3 +17,4 @@ class Task(BaseModel):
     description = models.TextField(max_length=255)
     assigned_to = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
+    attachment = models.FileField(upload_to="tasks", blank=True, null=True)
