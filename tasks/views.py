@@ -7,10 +7,13 @@ from django.views.generic import (
     DeleteView,
 )
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.core.cache import caches
 from tasks.models import Task
 from tasks.forms import TaskForm
 
-
+@method_decorator(cache_page(60 * 15, cache='memcached'), name='get')
 class TaskList(LoginRequiredMixin, ListView):
     """
     TaskList CBV
@@ -21,6 +24,8 @@ class TaskList(LoginRequiredMixin, ListView):
     context_object_name = "tasks"
 
     def get(self, request, *args, **kwargs):
+        default_cache = caches['memcached']
+        default_cache.set('zaza', 'zaza_value', timeout=300)
         if "list_visit_count" in self.request.session:
             self.request.session["list_visit_count"] += 1
         else:
