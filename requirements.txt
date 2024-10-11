@@ -2,5 +2,5 @@ django>=5.1
 nanoid==2.0.0
 django-tailwind==3.8.0
 python-dotenv==1.0.1
-redis=5.0.8
-pylibmc=1.6.3
+redis==5.0.8
+pylibmc==1.6.3
